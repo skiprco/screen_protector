@@ -49,17 +49,21 @@ public class SwiftScreenProtectorPlugin: NSObject, FlutterPlugin {
     
     public func applicationDidBecomeActive(_ application: UIApplication) {
         // Protect Data Leakage - OFF
+        disableProtectDataLeakageScreens()
+
+        // Prevent Screenshot - ON
+        if enabledPreventScreenshot == .on {
+            screenProtectorKit?.enabledPreventScreenshot()
+        }
+    }
+
+    private func disableProtectDataLeakageScreens() {
         if enabledProtectDataLeakageWithColor == .on {
             screenProtectorKit?.disableColorScreen()
         } else if enabledProtectDataLeakageWithImage == .on {
             screenProtectorKit?.disableImageScreen()
         } else if enabledProtectDataLeakageWithBlur == .on {
             screenProtectorKit?.disableBlurScreen()
-        }
-        
-        // Prevent Screenshot - ON
-        if enabledPreventScreenshot == .on {
-            screenProtectorKit?.enabledPreventScreenshot()
         }
     }
     
@@ -82,6 +86,12 @@ public class SwiftScreenProtectorPlugin: NSObject, FlutterPlugin {
                 protectDataLeakageWithColor = hexColor
                 enabledProtectDataLeakageWithColor = .on
             }
+            break
+        case "protectDataLeakageOff":
+            disableProtectDataLeakageScreens()
+            enabledProtectDataLeakageWithBlur = .off
+            enabledProtectDataLeakageWithImage = .off
+            enabledProtectDataLeakageWithColor = .off
             break
         case "preventScreenshotOn":
             enabledPreventScreenshot = .on

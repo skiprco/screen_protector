@@ -12,6 +12,7 @@ Safe Data Leakage via Application Background Screenshot and Prevent Screenshot f
 await ScreenProtector.protectDataLeakageWithColor(Colors.white);
 await ScreenProtector.protectDataLeakageWithBlur();
 await ScreenProtector.protectDataLeakageWithImage('LaunchImage');
+await ScreenProtector.protectDataLeakageOff()
 ```
 
 - Prevent Screenshot
