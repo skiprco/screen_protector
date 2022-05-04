@@ -22,10 +22,10 @@ abstract class LifecycleState<T extends StatefulWidget> extends State<T>
         onResumed();
         break;
       case AppLifecycleState.inactive:
-        onPaused();
+        onInactive();
         break;
       case AppLifecycleState.paused:
-        onInactive();
+        onPaused();
         break;
       case AppLifecycleState.detached:
         onDetached();
